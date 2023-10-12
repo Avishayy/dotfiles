@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Start by installing zsh
+{{ if eq .chezmoi.os "linux" -}}
+yes | sudo apt install zsh
+{{ else if eq .chezmoi.os "darwin" -}}
+yes | brew install zsh
+{{ end -}}
+
+# Now install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
