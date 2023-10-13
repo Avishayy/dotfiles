@@ -1,0 +1,20 @@
+{{ $os := "" }}
+{{ if eq .chezmoi.os "darwin" }}
+{{ $os = "macos" }}
+{{ else }}
+{{ $os = .chezmoi.os }}
+{{ end }}
+
+{{ $arch := "" }}
+{{ if eq .chezmoi.arch "amd64" }}
+{{ $arch = "x86_64" }}
+{{ else }}
+{{ $arch = .chezmoi.arch }}
+{{ end }}
+
+[".local/bin/bob"]
+    type = "archive-file"
+    url = "https://github.com/MordechaiHadad/bob/releases/download/v2.6.0/bob-{{ $os }}-{{ $arch }}.zip"
+    path = "bob"
+    executable = true
+    exact = true
