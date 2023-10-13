@@ -3,5 +3,5 @@
 echo "Changing shell to ZSH"
 sudo -k chsh -s `which zsh` "$USER"
 
-echo "Running ZSH"
-zsh
+echo "Your default shell is now ZSH, please restart!"
+
