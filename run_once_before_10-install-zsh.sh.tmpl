@@ -1,11 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 # Start by installing zsh
+echo "Installing ZSH"
+
 {{ if eq .chezmoi.os "linux" -}}
 yes | sudo apt install zsh
 {{ else if eq .chezmoi.os "darwin" -}}
 yes | brew install zsh
 {{ end -}}
 
-# Now install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# oh my zsh is installed with .chezmoiexeternal.toml
+# chsh and running zsh will be done in another script
