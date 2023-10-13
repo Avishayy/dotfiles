@@ -5,3 +5,5 @@
 	email = me@avishay.dev
 [rebase]
 	autoSquash = true
+[alias]
+	tree = log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
