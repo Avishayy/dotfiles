@@ -1,1 +1,9 @@
 .oh-my-zsh/cache
+
+# bob configuration file
+{{ if ne .chezmoi.os "darwin" }}
+Library/Application Support/bob/config.json
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.config/bob/config.json
+{{ end }}

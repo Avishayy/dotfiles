@@ -1,0 +1,4 @@
+{
+  "version_sync_file_location": "{{ .chezmoi.homeDir }}/.config/nvim/nvim.version",
+  "installation_location": "{{ .chezmoi.homeDir }}/.local/bin"
+}
