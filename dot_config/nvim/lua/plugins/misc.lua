@@ -53,24 +53,6 @@ return {
     keys = { "<leader>k", "<leader>K" },
   },
   {
-    "mcookly/rosetta.nvim",
-    lazy = false,
-    config = function()
-      require("rosetta").setup {
-        lang = {
-          hebrew = { -- Keyboard commands are created for each language automatically if `user_commands` are enabled.
-            keymap = "hebrew_utf-8",
-            rtl = true,
-            unicode_range = { "0590-05FF" },
-            options = { -- `vim.o` options can be passed through here.
-              delcombine = true,
-            },
-          },
-        },
-      }
-    end,
-  },
-  {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -78,13 +60,13 @@ return {
     config = function()
       require("neorg").setup {
         load = {
-          ["core.defaults"] = {},  -- Loads default behaviour
+          ["core.defaults"] = {}, -- Loads default behaviour
           ["core.concealer"] = {
             config = {
               icon_preset = "diamond",
             },
-          }, -- Adds pretty icons to your documents
-          ["core.dirman"] = {      -- Manages Neorg workspaces
+          },                  -- Adds pretty icons to your documents
+          ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
               workspaces = {
                 work = "~/notes",
