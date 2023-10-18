@@ -12,7 +12,7 @@ set -eufo pipefail
 
 {{/* packages that are linux only and then the same for darwin */}}
 {{ if eq .chezmoi.os "linux" -}}
-    {{/* $packages = append $packages  */}}
+    {{ $packages = append $packages "xclip" }}
 {{ else if eq .chezmoi.os "darwin" -}}
     {{/* $packages = append $packages  */}}
 {{ end }}
