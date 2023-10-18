@@ -1,0 +1,17 @@
+{{ $packages := list
+     "tree-sitter-cli"
+-}}
+
+#!/bin/zsh
+
+set -eufo pipefail
+
+echo $SHELL
+
+# First, let's make sure the latest node version is installed
+echo "Installing latest node version"
+nvm install node
+
+# now, use pnpm to install the packages
+echo "Installing global npm packages using pnpm"
+pnpm add -g {{ $packages | join " " }}
