@@ -26,7 +26,7 @@ return {
           "gitignore",
           "go",
           "graphql",
-          "help",
+          "vimdoc",
           "html",
           "http",
           "java",
