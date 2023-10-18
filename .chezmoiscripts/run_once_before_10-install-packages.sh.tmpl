@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{/* packages that are both for linux and darwin */}}
+{{ $packages := list "zsh" }}
+
+{{/* packages that are linux only and then the same for darwin */}}
+{{ if eq .chezmoi.os "linux" -}}
+    {{/* $packages = append $packages  */}}
+{{ else if eq .chezmoi.os "darwin" -}}
+    {{/* $packages = append $packages  */}}
+{{ end }}
+
+# Start by installing zsh
+echo "Installing packages"
+
+{{ if eq .chezmoi.os "linux" -}}
+sudo apt update
+sudo apt install -y {{ $packages | join " " }}
+{{ else if eq .chezmoi.os "darwin" -}}
+brew install {{ $packages | join " " }}
+{{ end -}}
