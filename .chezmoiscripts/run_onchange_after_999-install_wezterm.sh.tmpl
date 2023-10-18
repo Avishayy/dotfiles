@@ -3,7 +3,7 @@
 set -eufo pipefail
 
 {{ if ne .chezmoi.os "linux" -}}
-    // Currently only for linux
+    # Currently only for linux
     exit 0
 {{ end }}
 
