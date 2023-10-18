@@ -13,9 +13,9 @@ set -eufo pipefail
 
 {{/* packages that are linux only and then the same for darwin */}}
 {{ if eq .chezmoi.os "linux" -}}
-    {{ $packages = append $packages "xclip" }}
+    {{ $packages = concat $packages (list "xclip" "python3.10-venv") }}
 {{ else if eq .chezmoi.os "darwin" -}}
-    {{/* $packages = append $packages  */}}
+    {{/* $packages = concat $packages (list "") */}}
 {{ end }}
 
 # Start by installing zsh
