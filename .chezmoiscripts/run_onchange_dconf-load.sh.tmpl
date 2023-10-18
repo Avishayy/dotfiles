@@ -1,0 +1,8 @@
+#!/bin/bash
+
+{{ if ne .chezmoi.os "linux" -}}
+    exit 0
+{{ end }}
+
+# dconf.ini hash: {{ include "org.gnome.dconf.ini" | sha256sum }}
+dconf load / < {{ joinPath .chezmoi.sourceDir "org.gnome.dconf.ini" | quote }}
