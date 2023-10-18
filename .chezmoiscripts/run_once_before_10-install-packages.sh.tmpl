@@ -3,7 +3,12 @@
 set -eufo pipefail
 
 {{/* packages that are both for linux and darwin */}}
-{{ $packages := list "zsh" }}
+{{ $packages := list 
+    "zsh" 
+    "tmux" 
+    "fzf" 
+    "ripgrep"
+}}
 
 {{/* packages that are linux only and then the same for darwin */}}
 {{ if eq .chezmoi.os "linux" -}}
