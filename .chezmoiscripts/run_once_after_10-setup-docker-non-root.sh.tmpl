@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+{{ if ne .chezmoi.os "linux" -}}
+    # Only for linux
+    exit 0
+{{ end }}
+
+set -eufo pipefail
+
+# see https://docs.docker.com/engine/install/linux-postinstall/
+
+if ! [ $(getent group docker) ]; then
+    sudo groupadd docker
+fi
+sudo usermod -aG docker $USER
+echo "Added $USER to docker group"
+
+# This command opens a new shell, so I avoid it
+echo "Logout from the user to make sure you can use docker"
+
+# Let's make sure docker starts on boot
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+

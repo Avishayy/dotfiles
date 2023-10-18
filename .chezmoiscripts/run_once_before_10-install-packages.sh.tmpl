@@ -13,7 +13,21 @@ set -eufo pipefail
 
 {{/* packages that are linux only and then the same for darwin */}}
 {{ if eq .chezmoi.os "linux" -}}
-    {{ $packages = concat $packages (list "xclip" "python3.10-venv") }}
+    {{ $packages = concat $packages 
+        (list 
+            "xclip"
+            "python3.10-venv"
+
+            "ca-certificates"
+            "curl"
+            "gnupg"
+            "docker-ce"
+            "docker-ce-cli"
+            "containerd.io"
+            "docker-buildx-plugin"
+            "docker-compose-plugin"
+        )
+    }}
 {{ else if eq .chezmoi.os "darwin" -}}
     {{/* $packages = concat $packages (list "") */}}
 {{ end }}
@@ -22,8 +36,27 @@ set -eufo pipefail
 echo "Installing packages"
 
 {{ if eq .chezmoi.os "linux" -}}
+if ! command -v docker &> /dev/null; then
+    echo "Adding docker repository"
+
+    # Add Docker's official GPG key:
+    sudo apt install 
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+    # Add the repository to Apt sources:
+    echo \
+      "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+fi
+
 sudo apt update
 sudo apt install -y {{ $packages | join " " }}
+
+
+
 {{ else if eq .chezmoi.os "darwin" -}}
 brew install {{ $packages | join " " }}
 {{ end -}}
