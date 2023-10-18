@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# fonts file hash: {{ include ".chezmoiexternals/fonts.toml" }}
+
+# Necessary only for linux systems
+{{ if eq .chezmoi.os "linux" }}
+echo "Clearing fonts cache"
+fc-cache -f -v
+{{ end }}

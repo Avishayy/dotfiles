@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "linux" }}
+[".local/share/fonts"]
+{{ else if eq .chezmoi.os "darwin" }}
+["Library/Fonts"]
+{{ end }}
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.tar.xz"
