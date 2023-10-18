@@ -89,3 +89,7 @@ lspSymbol("Warning", "")
 -- Neorg fold levels should start deeper
 o.foldlevel = 2
 o.foldlevelstart = 2
+
+-- use nvim venv for pynvim
+HOME = os.getenv("HOME")
+vim.g.python3_host_prog = HOME .. "/.nvim_venv/bin/python3"
