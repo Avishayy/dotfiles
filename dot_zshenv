@@ -2,6 +2,10 @@
 typeset -U path
 path+=($HOME/.local/bin)
 
+if [[ -r "$HOME/.cargo/.env" ]]; then
+  . "$HOME/.cargo/env"
+fi
+
 export PNPM_HOME=$HOME/.local/share/pnpm
 path+=($PNPM_HOME)
 
