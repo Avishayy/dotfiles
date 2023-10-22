@@ -230,4 +230,7 @@ gaps outer 5
 exec_always --no-startup-id feh --bg-scale $HOME/assets/background.png
 
 # composite winows (for opacity)
-exec_always --no-startup-id picom -b
+# if I don't have a sleep, when having more than 1 display connected, the main display
+# will go black until I use arandr / physically reconnect the external display, so use
+# a god damn sleep to make it work :^)
+exec_always sleep 1; picom -b; 
