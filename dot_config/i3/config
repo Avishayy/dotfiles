@@ -215,3 +215,6 @@ mode "exit: [l]ogout, [r]eboot, [s]hutdown, loc[k]" {
 }
 
 bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown, loc[k]"
+
+# lock screen with win+l
+bindsym Mod4+l exec loginctl lock-session
