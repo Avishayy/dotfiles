@@ -15,6 +15,7 @@ config.font = wezterm.font 'FiraCodeNerdFont'
 config.enable_tab_bar = false
 config.window_decorations = "NONE"
 config.color_scheme = 'AdventureTime'
+config.window_background_opacity = 0.9
 
 -- and finally, return the configuration to wezterm
 return config
