@@ -219,6 +219,9 @@ bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown, loc[k]"
 # lock screen with win+l
 bindsym Mod4+l exec loginctl lock-session
 
+bindsym Print exec --no-startup-id $HOME/scripts/screenshot.sh
+bindsym Shift+Print exec --no-startup-id $HOME/scripts/screenshot.sh --region
+
 # no titles
 new_window pixel 0
 
