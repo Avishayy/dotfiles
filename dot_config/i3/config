@@ -225,3 +225,6 @@ new_window pixel 0
 # gaps :^)
 gaps inner 10
 gaps outer 5
+
+# custom bg
+exec_always --no-startup-id feh --bg-scale $HOME/assets/background.png
