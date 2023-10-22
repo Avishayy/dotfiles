@@ -221,3 +221,7 @@ bindsym Mod4+l exec loginctl lock-session
 
 # no titles
 new_window pixel 0
+
+# gaps :^)
+gaps inner 10
+gaps outer 5
