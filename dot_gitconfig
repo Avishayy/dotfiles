@@ -2,7 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = Avishay Matayev
-	email = me@avishay.dev
+	email = {{ .data.email }}
 [rebase]
 	autoSquash = true
 [alias]
