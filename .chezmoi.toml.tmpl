@@ -1,4 +1,6 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $product_name := output "sudo" "dmidecode" "-s" "system-product-name" | trim -}}
 
 [data]
     email = {{ $email | quote }}
+    product_name = {{ $product_name | quote }}
