@@ -1,0 +1,12 @@
+{{ if ne .product_name "Oryx Pro" }}
+oryx_home_2/**
+oryx_home_2/
+oryx_mobile/**
+oryx_mobile/
+{{ else }}
+# TODO: Ignore by proper product name
+home/**
+home/
+mobile/**
+mobile/
+{{ end }}
