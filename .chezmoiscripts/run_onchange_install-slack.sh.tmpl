@@ -1,0 +1,17 @@
+{{- if .work -}}
+#!/bin/bash
+
+VERSION=4.34.121
+
+CURRENT_VERSION=$(slack --version 2>/dev/null)
+
+if [ ! -x "$(command -v slack)" ] || [ "$CURRENT_VERSION" != "$VERSION" ]; then
+    echo "Installing Slack"
+    URL=https://downloads.slack-edge.com/releases/linux/$VERSION/prod/x64/slack-desktop-$VERSION-amd64.deb
+    TMP_FILE=/tmp/slack.deb
+    wget -O $TMP_FILE $URL && sudo dpkg -i $TMP_FILE
+else
+    echo "Slack already installed with version $VERSION"
+fi
+
+{{- end -}}
