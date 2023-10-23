@@ -204,6 +204,7 @@ exec_always --no-startup-id "setxkbmap -layout us,il -option grp:win_space_toggl
 # then run `xinput list-props "NAME_OF_DEVICE"` to check tapping prop name (should
 # be the same) and then just replace / add it here
 exec xinput set-prop "ELAN1200:00 04F3:30BA Touchpad" "libinput Tapping Enabled" 1
+exec xinput set-prop "FTCS1000:00 2808:0102 Touchpad" "libinput Tapping Enabled" 1
 
 mode "exit: [l]ogout, [r]eboot, [s]hutdown, loc[k]" {
   bindsym l exec i3-msg exit
