@@ -1,6 +1,13 @@
+{{- $work := false -}} {{/* Should this have work related stuff? */}}
+
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $product_name := output "sudo" "dmidecode" "-s" "system-product-name" | trim -}}
+
+{{- if eq $product_name "Oryx Pro" -}}
+{{-   $work = true -}}
+{{- end -}}
 
 [data]
     email = {{ $email | quote }}
     product_name = {{ $product_name | quote }}
+    work = {{ $work }}
