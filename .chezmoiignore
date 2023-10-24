@@ -8,3 +8,5 @@ Library/Application Support/bob/config.json
 {{ if ne .chezmoi.os "linux" }}
 .config/bob/config.json
 {{ end }}
+
+assets/charge-thresholds.service

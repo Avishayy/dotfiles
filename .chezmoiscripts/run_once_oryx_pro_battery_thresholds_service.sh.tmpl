@@ -1,0 +1,17 @@
+{{- if eq .product_name "Oryx Pro" -}}
+#!/bin/bash
+
+{{/* This feature is only supports on System76 computers so.. */}}
+{{/* See https://support.system76.com/articles/laptop-battery-thresholds/ */}}
+
+set -eufo pipefail
+
+echo "Enabling Charge Thresholds service"
+
+# copy systemd service file
+sudo cp {{ .chezmoi.sourceDir }}/assets/charge-thresholds.service /etc/systemd/system/charge-thresholds.service
+
+# now activate the service
+sudo systemctl enable charge-thresholds.service
+
+{{ end }}
