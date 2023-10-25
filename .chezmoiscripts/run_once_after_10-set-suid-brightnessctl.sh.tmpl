@@ -1,0 +1,9 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+echo "Setting suid bit on brightnessctl"
+
+sudo chmod 4755 `which brightnessctl`
+{{ end }}
