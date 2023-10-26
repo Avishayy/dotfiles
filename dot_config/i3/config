@@ -44,6 +44,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Brightness keys, required suid bit set on brightnessctl
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +15%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%-
+
+# Trackpad toggle key (if exists)
+bindsym XF86TouchpadToggle exec $HOME/scripts/toggle_trackpad.sh
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
