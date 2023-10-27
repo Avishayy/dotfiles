@@ -26,7 +26,6 @@ return {
         },
         extensions = {
           "fugitive",
-          "fzf",
           "quickfix",
         },
       }

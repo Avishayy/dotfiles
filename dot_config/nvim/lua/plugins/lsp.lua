@@ -7,8 +7,8 @@ return {
       "b0o/SchemaStore.nvim",
       "lvimuser/lsp-inlayhints.nvim",
       "simrat39/rust-tools.nvim",
-      "gfanto/fzf-lsp.nvim",
       "jose-elias-alvarez/typescript.nvim",
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -228,13 +228,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "gfanto/fzf-lsp.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "junegunn/fzf",
-    },
   },
   {
     "smjonas/inc-rename.nvim",

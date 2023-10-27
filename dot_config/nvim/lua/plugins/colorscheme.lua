@@ -14,6 +14,7 @@ return {
           treesitter = true,
           dap = true,
           lsp_trouble = true,
+          telescope = true,
         },
       }
       vim.cmd([[colorscheme catppuccin]])
