@@ -445,6 +445,7 @@ tmux_conf_uninstall_plugins_on_reload=true
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-sessionist'
 set -g @plugin 'tmux-plugins/tmux-open'
+set -g @plugin 'laktak/extrakto'
 
 # Emulate scrolling by sending up and down keys if these commands are running in the pane
 tmux_commands_with_legacy_scroll="nano less more man git"
