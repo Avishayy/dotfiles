@@ -99,4 +99,16 @@ return {
       }
     end,
   },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    opts = {
+      ensure_installed = {
+        "black",
+        "isort",
+        "prettierd",
+        "stylua",
+      },
+    },
+  },
 }
