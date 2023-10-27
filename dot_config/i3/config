@@ -248,3 +248,6 @@ exec_always sleep 1; picom -b;
 
 # alawys spawn a terminal
 exec wezterm
+
+# unclutter to hide mouse pointer when not in use
+exec unclutter &
