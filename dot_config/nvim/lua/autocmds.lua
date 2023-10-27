@@ -24,5 +24,5 @@ local localleader_augroup = vim.api.nvim_create_augroup("LocalLeader", {})
 vim.api.nvim_create_autocmd("FileType", {
   group = localleader_augroup,
   pattern = { "norg" },
-  command = "let maplocalleader = \"\\<Space>\"",
+  command = 'let maplocalleader = "\\<Space>"',
 })

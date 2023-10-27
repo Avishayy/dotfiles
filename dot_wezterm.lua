@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- This table will hold the configuration.
 local config = {}
@@ -11,10 +11,10 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
-config.font = wezterm.font 'FiraCodeNerdFont'
+config.font = wezterm.font("FiraCodeNerdFont")
 config.enable_tab_bar = false
 config.window_decorations = "NONE"
-config.color_scheme = 'AdventureTime'
+config.color_scheme = "AdventureTime"
 
 -- and finally, return the configuration to wezterm
 return config
