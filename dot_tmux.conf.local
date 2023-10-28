@@ -452,6 +452,9 @@ set -g @extrakto_key "e"
 # Emulate scrolling by sending up and down keys if these commands are running in the pane
 tmux_commands_with_legacy_scroll="nano less more man git"
 
+bind-key w new-window 'nvim "+lua vim.g.auto_session_enabled = false" -c ":Neorg workspace work" -c ":Neorg journal today" -c "norm G$"'
+bind-key W new-window 'nvim "+lua vim.g.auto_session_enabled = false" -c ":Neorg workspace personal" -c "norm G$"'
+
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
