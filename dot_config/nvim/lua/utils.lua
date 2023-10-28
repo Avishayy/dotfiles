@@ -177,4 +177,11 @@ function M.winmove(key)
   end
 end
 
+function M.file_exists(name)
+  if type(name) ~= "string" then
+    return false
+  end
+  return os.rename(name, name) and true or false
+end
+
 return M

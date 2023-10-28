@@ -52,10 +52,11 @@ return {
     "lfv89/vim-interestingwords",
     keys = { "<leader>k", "<leader>K" },
   },
+  { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "pysan3/neorg-templates" },
     lazy = false,
     config = function()
       require("neorg").setup {
@@ -95,8 +96,24 @@ return {
               engine = "nvim-cmp",
             },
           },
+          -- External templates plugin (pysan3/neorg-templates)
+          ["external.templates"] = {},
         },
       }
+
+      -- Create autocmd for journal template file for each workspace
+      local config_dir = vim.fn.stdpath("config")
+      local neorg_dirman = require("neorg.core.modules")["loaded_modules"]["core.dirman"]["public"]
+      for workspace_name, neorg_dir in pairs(neorg_dirman.get_workspaces()) do
+        local template_name = workspace_name .. "_journal"
+        local workspace_journal_file = config_dir .. "/templates/norg/" .. template_name .. ".norg"
+        if require("utils").file_exists(workspace_journal_file) then
+          vim.api.nvim_create_autocmd("BufNewFile", {
+            command = "Neorg templates fload " .. template_name,
+            pattern = { neorg_dir .. "/journal/*.norg" },
+          })
+        end
+      end
     end,
   },
   {
