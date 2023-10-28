@@ -184,6 +184,7 @@ return {
         ui = {
           border = "rounded",
         },
+        PATH = "append",
       }
     end,
   },
