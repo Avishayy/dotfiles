@@ -19,7 +19,7 @@ return {
         typescript = { "prettierd" },
         javascriptreact = { "prettierd" },
         typescriptreact = { "prettierd" },
-        python = { "black", "isort" },
+        python = { { "ruff" }, { "black", "isort" } },
         rust = { "rustfmt" },
         lua = { "stylua" },
       },
