@@ -7,5 +7,17 @@
 	autoSquash = true
 [alias]
 	tree = log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
+    mc = \
+    "!f() { \
+        git fetch origin main && \
+        if git merge-base --is-ancestor origin/main HEAD; then \
+          echo '\\033[0;32mMerge Check: OK\\033[0m'; \
+          exit 0; \
+        else \
+          echo '\\033[0;31mMerge Check: Failed!\\033[0m'; \
+          exit 1; \
+        fi; \
+    }; \
+    f"
 [push]
 	default = current
