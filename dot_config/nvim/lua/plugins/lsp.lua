@@ -128,8 +128,16 @@ return {
       require("lspconfig").pyright.setup {
         capabilities = capabilities,
         on_attach = on_attach,
-        before_init = function(params, config)
+        before_init = function(_, config)
           local Path = require("plenary.path")
+
+          -- Check if CONDA_PREFIX exists and use it
+          if os.getenv("CONDA_PREFIX") then
+            config.settings.python.pythonPath = os.getenv("CONDA_PREFIX") .. "/bin/python"
+            return
+          end
+
+          -- Check for .venv and use it if exists
           local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
           if venv:joinpath("bin"):is_dir() then
             config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
