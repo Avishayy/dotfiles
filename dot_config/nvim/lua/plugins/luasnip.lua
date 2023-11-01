@@ -4,7 +4,7 @@ return {
     local luasnip = require("luasnip")
     local map = vim.keymap.set
 
-    map({ "i", "s" }, "<C-j>", function(fallback)
+    map({ "i", "s" }, "<C-k>", function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
@@ -14,7 +14,7 @@ return {
       end
     end)
 
-    map({ "i", "s" }, "<C-k>", function(fallback)
+    map({ "i", "s" }, "<C-j>", function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
       else
