@@ -15,7 +15,7 @@ return {
     },
     keys = {
       { "<space>t", ":Telescope " },
-      { "<C-p>", "<cmd>Telescope find_files<cr>" },
+      { "<C-p>", "<cmd>Telescope find_files hidden=true<cr>" },
       { "<C-d>", "<cmd>Telescope live_grep<cr>" },
       { "q:", "<cmd>Telescope command_history<cr>" },
       { "q/", "<cmd>Telescope search_story<cr>" },
