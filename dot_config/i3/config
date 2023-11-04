@@ -253,3 +253,6 @@ exec wezterm
 
 # unclutter to hide mouse pointer when not in use
 exec unclutter &
+
+# set keyboard rate, 200ms initial delay, 35ms between repeats
+exec --no-startup-id xset r rate 200 35
