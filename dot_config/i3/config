@@ -244,7 +244,7 @@ gaps inner 10
 gaps outer 5
 
 # custom bg
-exec_always --no-startup-id feh --bg-scale $HOME/assets/background.png
+exec_always --no-startup-id $HOME/scripts/set_wallpapers.sh
 
 # composite winows (for opacity)
 # if I don't have a sleep, when having more than 1 display connected, the main display
