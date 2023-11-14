@@ -7,7 +7,6 @@ return {
       "b0o/SchemaStore.nvim",
       "lvimuser/lsp-inlayhints.nvim",
       "simrat39/rust-tools.nvim",
-      "jose-elias-alvarez/typescript.nvim",
       "nvim-telescope/telescope.nvim",
     },
     config = function()
@@ -49,47 +48,6 @@ return {
           vim.cmd([[ highlight link @interface @type ]])
         end
       end
-
-      require("typescript").setup {
-        server = {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
-          init_options = {
-            hostInfo = "neovim",
-            preferences = {
-              includeCompletionsWithSnippetText = true,
-              includeCompletionsForImportStatements = true,
-            },
-          },
-        },
-      }
 
       require("neodev").setup {
         -- add any options here, or leave empty to use the default settings
@@ -239,6 +197,12 @@ return {
     keys = {
       { "<space>rn", ":IncRename " },
     },
+    config = true,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    event = "BufReadPost",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = true,
   },
 }
