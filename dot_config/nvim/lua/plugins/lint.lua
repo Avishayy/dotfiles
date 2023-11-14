@@ -5,6 +5,10 @@ return {
     config = function()
       require("lint").linters_by_ft = {
         python = { "ruff" },
+        javascript = { "eslint" },
+        javascriptreact = { "eslint" },
+        typescript = { "eslint" },
+        typescriptreact = { "eslint" },
       }
 
       -- Refresh lints when leaving insert mode / saving

@@ -176,13 +176,6 @@ return {
           on_attach = on_attach,
         },
       }
-
-      require("lspconfig").eslint.setup {
-        server = {
-          capabilities = capabilities,
-          on_attach = on_attach,
-        },
-      }
     end,
   },
   {
@@ -212,7 +205,7 @@ return {
           "jsonls",
           "rust_analyzer",
           "kotlin_language_server",
-          "eslint",
+          "tailwindcss",
         },
       }
     end,
