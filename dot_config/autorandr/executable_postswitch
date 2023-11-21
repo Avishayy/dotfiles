@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Split AUTORANDR_MONITORS into an array
+IFS=':' read -r -a MONITORS <<< "$AUTORANDR_MONITORS"
+
+# Check if exactly three monitors are connected
+if [ ${#MONITORS[@]} -eq 3 ]; then
+    # Assign monitors to variables
+    EXTERNAL_MONITOR1=${MONITORS[0]}
+    EXTERNAL_MONITOR2=${MONITORS[1]}
+    LAPTOP_MONITOR=${MONITORS[2]}
+
+    # Use i3-msg to move workspaces to the appropriate monitors
+    i3-msg workspace 1; i3-msg move workspace to output $LAPTOP_MONITOR
+    i3-msg workspace 2; i3-msg move workspace to output $EXTERNAL_MONITOR1
+    i3-msg workspace 3; i3-msg move workspace to output $EXTERNAL_MONITOR2
+else
+    echo "Not the correct number of monitors for this script. No changes made."
+fi
