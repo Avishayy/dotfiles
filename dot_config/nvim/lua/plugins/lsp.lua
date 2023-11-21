@@ -176,6 +176,20 @@ return {
           on_attach = on_attach,
         },
       }
+
+      require("lspconfig").cssls.setup {
+        server = {
+          capabilities = capabilities,
+          on_attach = on_attach,
+        },
+      }
+
+      require("lspconfig").cssmodules_ls.setup {
+        server = {
+          capabilities = capabilities,
+          on_attach = on_attach,
+        },
+      }
     end,
   },
   {
@@ -206,6 +220,8 @@ return {
           "rust_analyzer",
           "kotlin_language_server",
           "tailwindcss",
+          "cssls",
+          "cssmodules_ls",
         },
       }
     end,

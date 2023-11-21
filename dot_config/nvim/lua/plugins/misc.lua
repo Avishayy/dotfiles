@@ -125,7 +125,7 @@ return {
         "isort",
         "prettierd",
         "stylua",
-        "eslint",
+        "eslint_d",
       },
     },
   },
