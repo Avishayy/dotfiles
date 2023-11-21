@@ -4,9 +4,23 @@
 sleep 0.4
 
 options=""
+clipoard=false
 
-if [[ "$1" == "--region" ]]; then
-  options="--select capture"
+for arg in "$@"
+do
+    case "$arg" in
+        --window)  options="-window root" ;;
+        --clipboard) clipboard=true ;;
+    esac
+done
+
+# Move the mouse just a bit to show it so we'll see the capture cursor,
+# as unclutter hides it
+xdotool mousemove_relative --sync 1 1;
+
+FILENAME=$HOME/Pictures/Screenshots/Screenshot_$(date +"%Y-%m-%dT%H:%M:%S").png
+import $options $FILENAME
+
+if [[ $clipboard ]]; then
+    xclip -selection clipboard -t image/png -i $FILENAME
 fi
-
-scrot $options -F "$HOME/Pictures/Screenshots/Screenshot_$(date +"%Y-%m-%dT%H:%M:%S").png"
