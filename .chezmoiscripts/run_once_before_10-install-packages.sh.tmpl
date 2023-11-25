@@ -32,6 +32,9 @@ set -eufo pipefail
             "libgl1-mesa-glx"
             "libegl1-mesa" 
             "libxcb-xtest0"
+            "libssl-dev"
+            "libsensors-dev"
+            "libpulse-dev"
 
             "i3"
             "rofi"
@@ -46,6 +49,7 @@ set -eufo pipefail
             "unclutter-xfixes"
             "playerctl"
             "imagemagick"
+            "pandoc"
         )
     }}
 {{ else if eq .chezmoi.os "darwin" -}}
