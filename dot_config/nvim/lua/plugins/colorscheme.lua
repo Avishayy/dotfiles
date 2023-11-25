@@ -16,6 +16,13 @@ return {
           lsp_trouble = true,
           telescope = true,
         },
+        highlight_overrides = {
+          all = function(colors)
+            return {
+              VertSplit = { fg = "#777777" },
+            }
+          end,
+        },
       }
       vim.cmd([[colorscheme catppuccin]])
     end,
