@@ -31,6 +31,21 @@ return {
       local lga_actions = require("telescope-live-grep-args.actions")
 
       require("telescope").setup {
+        defaults = {
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            -- Show hidden files / dirs except .git/ files
+            "--hidden",
+            "-g",
+            "!.git/*",
+          },
+        },
         extensions = {
           fzf = {
             fuzzy = true,
