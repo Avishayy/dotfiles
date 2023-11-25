@@ -18,7 +18,7 @@ return {
       { "<C-p>", "<cmd>Telescope find_files hidden=true<cr>" },
       { "<C-d>", "<cmd>Telescope live_grep<cr>" },
       { "q:", "<cmd>Telescope command_history<cr>" },
-      { "q/", "<cmd>Telescope search_story<cr>" },
+      { "q/", "<cmd>Telescope search_history<cr>" },
       { "<C-f>", ":<cmd>Telescope grep_string<cr>" },
       { "<space>b", ":<cmd>Telescope git_branches<cr>" },
       { "<space>c", ":<cmd>Telescope git_commits<cr>" },
