@@ -2,6 +2,8 @@
 
 set -eufo pipefail
 
+# Using i3 only for linux
+{{ if eq .chezmoi.os "linux" }}
 echo "Installing i3status-rust"
 
 DIR=/tmp/i3status-rust
@@ -10,3 +12,4 @@ git clone https://github.com/greshake/i3status-rust /tmp/i3status-rust
 cd /tmp/i3status-rust
 cargo install --path . --locked
 ./install.sh
+{{ end }}

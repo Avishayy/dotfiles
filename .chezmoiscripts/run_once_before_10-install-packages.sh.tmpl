@@ -54,7 +54,7 @@ set -eufo pipefail
         )
     }}
 {{ else if eq .chezmoi.os "darwin" -}}
-    {{/* $packages = concat $packages (list "") */}}
+    {{ $packages = concat $packages (list "pnpm") }}
 {{ end }}
 
 # Start by installing zsh

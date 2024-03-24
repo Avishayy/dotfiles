@@ -19,9 +19,3 @@
     executable = true
     exact = true
 
-[".local/bin/bluetuith"]
-    type = "archive-file"
-    url = "https://github.com/darkhz/bluetuith/releases/download/v0.1.9/bluetuith_0.1.9_{{ $os }}_{{ $arch }}.tar.gz"
-    path = "bluetuith"
-    executable = true
-    exact = true

@@ -1,8 +1,13 @@
 {{- $work := false -}} {{/* Should this have work related stuff? */}}
 {{- $company_name := "" -}} {{/* The company name this work computer is for */}}
+{{- $product_name := "" -}}
 
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $product_name := output "sudo" "dmidecode" "-s" "system-product-name" | trim -}}
+{{ if eq .chezmoi.os "darwin" }}
+{{- $product_name = "Mac" -}}
+{{- else -}}
+{{- $product_name = output "sudo" "dmidecode" "-s" "system-product-name" | trim -}}
+{{- end -}}
 
 {{- if eq $product_name "Oryx Pro" -}}
 {{-   $work = true -}}

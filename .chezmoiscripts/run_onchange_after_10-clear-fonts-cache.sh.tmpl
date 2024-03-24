@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# fonts file hash: {{ include ".chezmoiexternals/fonts.toml" }}
+# fonts file hash: {{ include ".chezmoiexternals/fonts.toml" | sha256sum }}
 
 # Necessary only for linux systems
 {{ if eq .chezmoi.os "linux" }}
