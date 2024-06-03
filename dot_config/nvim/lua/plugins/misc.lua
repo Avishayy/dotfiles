@@ -54,9 +54,13 @@ return {
   },
   { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
   {
+    "vhyrro/luarocks.nvim",
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
+  {
     "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim", "pysan3/neorg-templates" },
+    dependencies = { "luarocks.nvim" },
     lazy = false,
     config = function()
       require("neorg").setup {
