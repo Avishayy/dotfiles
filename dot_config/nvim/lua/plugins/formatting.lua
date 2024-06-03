@@ -7,7 +7,7 @@ return {
       {
         "<leader>f",
         function()
-          require("conform").format { async = true, timeout_ms = 500, lsp_fallback = true }
+          require("conform").format { async = true, lsp_fallback = true }
         end,
         mode = "",
         desc = "Format buffer",
@@ -24,7 +24,6 @@ return {
         lua = { "stylua" },
       },
       format_on_save = {
-        async = true,
         timeout_ms = 500,
         lsp_fallback = true,
       },
