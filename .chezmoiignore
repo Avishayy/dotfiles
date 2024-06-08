@@ -4,9 +4,11 @@
 # bob configuration file
 {{ if ne .chezmoi.os "darwin" }}
 Library/Application Support/bob/config.json
+Library/Application Support/pypoetry/config.toml
 {{ end }}
 {{ if ne .chezmoi.os "linux" }}
 .config/bob/config.json
+.config/pypoetry/config.toml
 {{ end }}
 
 assets/charge-thresholds.service
