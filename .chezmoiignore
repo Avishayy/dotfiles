@@ -12,3 +12,7 @@ Library/Application Support/pypoetry/config.toml
 {{ end }}
 
 assets/charge-thresholds.service
+
+{{ if eq .chezmoi.os "darwin" }}
+Library/Fonts/README.md
+{{ end }}
