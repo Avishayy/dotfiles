@@ -250,7 +250,7 @@ return {
     -- setup dap autocomplition
     require("cmp").setup {
       enabled = function()
-        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+        return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt" or require("cmp_dap").is_dap_buffer()
       end,
     }
 
