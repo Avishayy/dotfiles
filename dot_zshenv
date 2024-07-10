@@ -9,6 +9,10 @@ fi
 export PNPM_HOME=$HOME/.local/share/pnpm
 path+=($PNPM_HOME)
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # I use this snippet rather than the ohmyzsh nvm plugin becaue I want nvm to be available for chezmoi scripts
 # and ohmyzsh is loaded only for interactive shells, which makes the nvm plugin unavailable
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

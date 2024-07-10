@@ -51,10 +51,18 @@ set -eufo pipefail
             "imagemagick"
             "pandoc"
             "python3.11"
+            "liblzma-dev"
+            "libreadline-dev"
+            "libbz2-dev"
+            "libncurses5"
+            "libncurses5-dev" 
+            "libncursesw5"
+            "libsqlite3-dev"
+            "tk-dev"
         )
     }}
 {{ else if eq .chezmoi.os "darwin" -}}
-    {{ $packages = concat $packages (list "pnpm") }}
+    {{ $packages = concat $packages (list "pnpm" "readline" "xz") }}
 {{ end }}
 
 # Start by installing zsh
