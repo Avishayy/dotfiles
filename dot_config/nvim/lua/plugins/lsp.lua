@@ -1,3 +1,39 @@
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  -- Enable inlay hints
+  require("lsp-inlayhints").on_attach(client, bufnr)
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  local nsilent_bufopts = { noremap = true, buffer = bufnr }
+
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set("n", "<space>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set("n", "<space>s", ":WorkspaceSymbols ", nsilent_bufopts)
+  vim.keymap.set("n", "<space>d", "<cmd>DocumentSymbols<CR>", bufopts)
+  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+  -- Uses IncRename instead
+  -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+
+  if client.server_capabilities.semanticTokensProvider then
+    vim.lsp.semantic_tokens.start(bufnr, client.id)
+    vim.cmd([[ highlight link @interface @type ]])
+  end
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -12,42 +48,6 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-      local on_attach = function(client, bufnr)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-        -- Enable inlay hints
-        require("lsp-inlayhints").on_attach(client, bufnr)
-
-        -- Mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        local nsilent_bufopts = { noremap = true, buffer = bufnr }
-
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set("n", "<space>wl", function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-        vim.keymap.set("n", "<space>s", ":WorkspaceSymbols ", nsilent_bufopts)
-        vim.keymap.set("n", "<space>d", "<cmd>DocumentSymbols<CR>", bufopts)
-        vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-        -- Uses IncRename instead
-        -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-
-        if client.server_capabilities.semanticTokensProvider then
-          vim.lsp.semantic_tokens.start(bufnr, client.id)
-          vim.cmd([[ highlight link @interface @type ]])
-        end
-      end
 
       require("neodev").setup {
         library = { plugins = { "nvim-dap-ui" }, types = true },
@@ -221,6 +221,7 @@ return {
     event = "BufReadPost",
     config = function()
       require("typescript-tools").setup {
+        on_attach = on_attach,
         settings = {
           completions = {
             completeFunctionCalls = true,
