@@ -11,7 +11,7 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
-config.font = wezterm.font("FiraCodeNerdFont")
+config.font = wezterm.font("FiraCode Nerd Font")
 config.enable_tab_bar = false
 config.window_decorations = "NONE"
 config.color_scheme = "AdventureTime"
