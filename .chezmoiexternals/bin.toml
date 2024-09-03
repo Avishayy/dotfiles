@@ -8,13 +8,15 @@
 {{ $arch := "" }}
 {{ if eq .chezmoi.arch "amd64" }}
 {{ $arch = "x86_64" }}
+{{ else if eq .chezmoi.arch "arm64" }}
+{{ $arch = "arm" }}
 {{ else }}
 {{ $arch = .chezmoi.arch }}
 {{ end }}
 
 [".local/bin/bob"]
     type = "archive-file"
-    url = "https://github.com/MordechaiHadad/bob/releases/download/v2.9.1/bob-{{ $os }}-{{ $arch }}.zip"
+    url = "https://github.com/MordechaiHadad/bob/releases/download/v4.0.1/bob-{{ $os }}-{{ $arch }}.zip"
     path = "bob-{{ $os }}-{{ $arch }}/bob"
     executable = true
     exact = true
