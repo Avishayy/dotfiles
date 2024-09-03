@@ -63,7 +63,13 @@ set -eufo pipefail
         )
     }}
 {{ else if eq .chezmoi.os "darwin" -}}
-    {{ $packages = concat $packages (list "pnpm" "readline" "xz") }}
+    {{ $packages = concat $packages (list 
+        "pnpm" 
+        "readline"
+        "xz"
+        "yawsso"
+        "sqsmover"
+    ) }}
 {{ end }}
 
 # Start by installing zsh
@@ -101,5 +107,6 @@ sudo apt install -y {{ $packages | join " " }}
 
 
 {{ else if eq .chezmoi.os "darwin" -}}
+brew tap syncdk/yawsso
 brew install {{ $packages | join " " }}
 {{ end -}}
