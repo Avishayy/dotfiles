@@ -20,3 +20,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
+
+{{ if eq .chezmoi.os "darwin" }}
+eval $(/opt/homebrew/bin/brew shellenv)
+{{ end }}
