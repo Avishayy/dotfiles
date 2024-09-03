@@ -7,6 +7,10 @@ echo "Installing miniconda3"
 {{ $os := "" }}
 {{ if eq .chezmoi.os "darwin" }}
 {{ $os = "MacOSX" }}
+  {{ if eq .chezmoi.arch "arm64" }}
+    echo "Skipping miniconda3 on arm64 (FIXME)"
+    exit 0
+  {{ end }}
 {{ else }}
 {{ $os = "Linux" }}
 {{ end }}
