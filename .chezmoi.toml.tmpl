@@ -9,11 +9,9 @@
 {{- $product_name = output "sudo" "dmidecode" "-s" "system-product-name" | trim -}}
 {{- end -}}
 
-{{- if eq $product_name "Oryx Pro" -}}
+{{- $is_work := promptBoolOnce . "is_work" "Is this a work computer? (y/n)" -}}
+{{- if $is_work -}}
 {{-   $work = true -}}
-{{- end -}}
-
-{{- if $work -}}
 {{-   $company_name = promptStringOnce . "company_name" "Company Name" -}}
 {{- end -}}
 
