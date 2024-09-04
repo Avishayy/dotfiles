@@ -1,6 +1,10 @@
 {{- if .work -}}
 #!/bin/bash
 
+{{ if eq .chezmoi.os "darwin" }}
+echo "Not installing Slack on Mac"
+exit 0
+{{ else }}
 VERSION=4.34.121
 
 CURRENT_VERSION=$(slack --version 2>/dev/null)
@@ -13,5 +17,7 @@ if [ ! -x "$(command -v slack)" ] || [ "$CURRENT_VERSION" != "$VERSION" ]; then
 else
     echo "Slack already installed with version $VERSION"
 fi
+
+{{ end }}
 
 {{- end -}}
