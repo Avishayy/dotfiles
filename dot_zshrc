@@ -79,8 +79,8 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 #
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
