@@ -13,6 +13,9 @@ return {
       { "nvim-lua/plenary.nvim" },
     },
     cmd = "CopilotChat",
+    keys = {
+      { "<leader>cc", "<cmd>CopilotChat<cr>" },
+    },
     opts = {
       debug = true,
     },
