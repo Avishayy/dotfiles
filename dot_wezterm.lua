@@ -13,8 +13,15 @@ end
 -- This is where you actually apply your config choices
 config.font = wezterm.font("FiraCode Nerd Font")
 config.enable_tab_bar = false
-config.window_decorations = "NONE"
+-- Yabai doesn't recognize the window if decorations are NONE..
+-- temporarily set to INTEGRATED_BUTTONS
+config.window_decorations = "INTEGRATED_BUTTONS"
 config.color_scheme = "AdventureTime"
+config.window_padding = {
+  -- temporarily set top padding so integrated buttons don't integere with content
+  top = 48,
+  bottom = 0,
+}
 
 -- and finally, return the configuration to wezterm
 return config

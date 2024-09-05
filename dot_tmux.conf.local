@@ -385,11 +385,6 @@ bind -n S-Right next-window
 bind p previous-window
 bind n next-window
 
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
-
 # I want the session list to be sorted alphabetically
 bind s choose-tree -O name -s
 

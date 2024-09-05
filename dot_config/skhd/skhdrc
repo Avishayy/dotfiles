@@ -1,0 +1,23 @@
+# Swap window focus directionally across displays
+alt - h : yabai -m window --focus west || yabai -m display --focus west
+alt - l : yabai -m window --focus east || yabai -m display --focus east
+alt - j : yabai -m window --focus south || yabai -m display --focus south
+alt - k : yabai -m window --focus north || yabai -m display --focus north
+
+# Maximize window
+alt - m : yabai -m window --toggle zoom-fullscreen
+
+# Move window left (west) and keep focus
+alt + shift - h : yabai -m window --warp west || (yabai -m window --display west && yabai -m window --focus recent)
+# Move window right (east) and keep focus
+alt + shift - l : yabai -m window --warp east || (yabai -m window --display east && yabai -m window --focus recent)
+# Move window down (south) and keep focus
+alt + shift - j : yabai -m window --warp south || (yabai -m window --display south && yabai -m window --focus recent)
+# Move window up (north) and keep focus
+alt + shift - k : yabai -m window --warp north || (yabai -m window --display north && yabai -m window --focus recent)
+
+# Resize windows
+alt + ctrl - h : yabai -m window --resize left:-20
+alt + ctrl - l : yabai -m window --resize right:20
+alt + ctrl - j : yabai -m window --resize bottom:20
+alt + ctrl - k : yabai -m window --resize top:-20

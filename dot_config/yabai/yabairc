@@ -1,25 +1,18 @@
+# script injection, make sure we allow yabai to run it through sudoers
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# Move focused window to the previous screen
-yabai -m config window_border off
-yabai -m config mouse_follows_focus on
+# default layour (bsp)
+yabai -m config layout bsp
+# new window spawns on the right for vertical, bottom for horizontal
+yabai -m config window_placement second_child
 
-# Set up keybindings for moving windows
-yabai -m config window_opacity on
-yabai -m config active_window_opacity 0.9
-yabai -m config normal_window_opacity 0.8
+# padding set to 12px
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 12
 
-# Move window to previous screen (usually with Alt + Shift + H)
-yabai -m rule --add app="^.*$" manage=off
-yabai -m signal --add event=window_created action="yabai -m window --focus mouse"
-
-# Move window to the next screen (usually with Alt + Shift + L)
-yabai -m config window_shadow off
-yabai -m signal --add event=space_changed action="yabai -m query --windows --space | jq -r '.[].id' | while read id; do yabai -m window $id --grid 1:1:0:0:1:1; done"
-
-# Move window to the previous screen
-yabai -m keybind alt+shift+h window --display prev
-
-# Move window to the next screen
-yabai -m keybind alt+shift+l window --display next
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap
