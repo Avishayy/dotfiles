@@ -8,5 +8,5 @@ echo "Installing pnpm"
 
 # TODO: the setup is intrusive and modifies .zshrc....
 # no flag to --skip-zshrc yet https://github.com/pnpm/pnpm/issues/6182
-curl -fsSL https://get.pnpm.io/install.sh | sh -
+curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=8.15.9 sh -
 {{ end }}
