@@ -65,7 +65,6 @@ set -eufo pipefail
     }}
 {{ else if eq .chezmoi.os "darwin" -}}
     {{ $packages = concat $packages (list 
-        "pnpm" 
         "readline"
         "xz"
         "yawsso"
