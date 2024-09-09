@@ -131,6 +131,7 @@ return {
         "stylua",
         "eslint_d",
         "debugpy",
+        "js-debug-adapter",
       },
     },
   },
