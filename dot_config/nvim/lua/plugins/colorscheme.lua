@@ -19,7 +19,7 @@ return {
         highlight_overrides = {
           all = function(colors)
             return {
-              VertSplit = { fg = "#777777" },
+              WinSeparator = { fg = "#41415b" },
             }
           end,
         },
