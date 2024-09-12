@@ -148,6 +148,19 @@ return {
           on_attach = on_attach,
         },
       }
+
+      require("lspconfig").graphql.setup {
+        server = {
+          capabilities = capabilities,
+          on_attach = on_attach,
+        },
+        root_dir = require("lspconfig").util.root_pattern(
+          ".git",
+          ".graphqlrc*",
+          ".graphql.config.*",
+          "graphql.config.*"
+        ),
+      }
     end,
   },
   {
@@ -180,6 +193,7 @@ return {
           "tailwindcss",
           "cssls",
           "cssmodules_ls",
+          "graphql",
         },
       }
     end,
