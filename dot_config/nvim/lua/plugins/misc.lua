@@ -131,7 +131,6 @@ return {
         "stylua",
         "eslint_d",
         "debugpy",
-        "js-debug-adapter",
       },
     },
   },
@@ -141,5 +140,14 @@ return {
     init = function()
       vim.g["chezmoi#use_tmp_buffer"] = true
     end,
+  },
+  {
+    "chrisgrieser/nvim-early-retirement",
+    config = function()
+      require("early-retirement").setup {
+        minimumBufferNum = 10,
+      }
+    end,
+    event = "VeryLazy",
   },
 }
