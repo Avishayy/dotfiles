@@ -19,8 +19,10 @@ return {
       { "q:", "<cmd>Telescope command_history<cr>" },
       { "q/", "<cmd>Telescope search_history<cr>" },
       { "<C-f>", ":<cmd>Telescope grep_string<cr>" },
-      { "<space>b", ":<cmd>Telescope git_branches<cr>" },
+      { "<space>B", ":<cmd>Telescope git_branches<cr>" },
       { "<space>c", ":<cmd>Telescope git_commits<cr>" },
+      { "<space>b", ":<cmd>Telescope buffers<cr>" },
+      { "<space>r", ":<cmd>Telescope resume<cr>" },
     },
     cmd = {
       "Telescope",
