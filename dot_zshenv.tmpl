@@ -2,6 +2,8 @@
 typeset -U path
 path+=($HOME/.local/bin)
 
+path+=($HOME/scripts)
+
 if [[ -r "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi
