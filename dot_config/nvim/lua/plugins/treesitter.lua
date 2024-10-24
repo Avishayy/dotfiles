@@ -39,6 +39,7 @@ return {
           "lua",
           "markdown",
           "markdown_inline",
+          "norg",
           "php",
           "python",
           "query",
