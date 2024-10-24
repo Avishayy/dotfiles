@@ -150,4 +150,15 @@ return {
     end,
     event = "VeryLazy",
   },
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = {
+      keymaps = {
+        ["<C-h>"] = false,
+        ["<C-l>"] = false,
+      },
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }
