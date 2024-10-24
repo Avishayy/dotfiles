@@ -11,6 +11,7 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       "gbrlsnchs/telescope-lsp-handlers.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     keys = {
       { "<space>t", ":Telescope " },
@@ -81,6 +82,8 @@ return {
 
       -- load telescope-live-grep-args.nvim
       require("telescope").load_extension("live_grep_args")
+
+      require("telescope").load_extension("ui-select")
     end,
   },
 }
