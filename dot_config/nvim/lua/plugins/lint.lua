@@ -9,6 +9,7 @@ return {
         javascriptreact = { "eslint_d" },
         typescript = { "eslint_d" },
         typescriptreact = { "eslint_d" },
+        graphql = { "eslint_d" },
       }
 
       -- Refresh lints when leaving insert mode / saving

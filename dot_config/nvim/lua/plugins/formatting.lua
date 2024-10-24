@@ -43,6 +43,7 @@ return {
           python = { { "ruff" }, { "black", "isort" } },
           rust = { "rustfmt" },
           lua = { "stylua" },
+          graphql = { "eslint_d" },
         },
       }
     end,
