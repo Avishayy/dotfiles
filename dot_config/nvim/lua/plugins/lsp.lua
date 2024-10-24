@@ -25,8 +25,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
   -- Uses IncRename instead
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+  -- code actions is setup in actions-preview below
 
   if client.server_capabilities.semanticTokensProvider then
     vim.lsp.semantic_tokens.start(bufnr, client.id)
@@ -36,6 +36,27 @@ end
 
 return {
   {
+    "aznhe21/actions-preview.nvim",
+    config = function()
+      vim.keymap.set({ "v", "n" }, "<space>ca", require("actions-preview").code_actions)
+      require("actions-preview").setup {
+        telescope = {
+          sorting_strategy = "ascending",
+          layout_strategy = "vertical",
+          layout_config = {
+            width = 0.8,
+            height = 0.9,
+            prompt_position = "top",
+            preview_cutoff = 20,
+            preview_height = function(_, _, max_lines)
+              return max_lines - 15
+            end,
+          },
+        },
+      }
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "hrsh7th/nvim-cmp",
@@ -44,6 +65,7 @@ return {
       "lvimuser/lsp-inlayhints.nvim",
       "simrat39/rust-tools.nvim",
       "nvim-telescope/telescope.nvim",
+      "aznhe21/actions-preview.nvim",
     },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
