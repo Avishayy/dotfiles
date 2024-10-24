@@ -14,8 +14,8 @@ end
 config.font = wezterm.font("FiraCode Nerd Font")
 config.enable_tab_bar = false
 -- Yabai doesn't recognize the window if decorations are NONE..
--- temporarily set to INTEGRATED_BUTTONS
-config.window_decorations = "INTEGRATED_BUTTONS"
+-- RESIZE does work instead
+config.window_decorations = "RESIZE"
 config.color_scheme = "AdventureTime"
 config.window_padding = {
   -- temporarily set top padding so integrated buttons don't integere with content
