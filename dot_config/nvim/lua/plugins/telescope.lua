@@ -4,6 +4,18 @@ return {
     build = "make",
   },
   {
+    "antonk52/npm_scripts.nvim",
+    keys = {
+      {
+        "<space>p",
+        function()
+          require("npm_scripts").run_from_all()
+        end,
+        desc = "Run npm script",
+      },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = {
@@ -12,6 +24,7 @@ return {
       "gbrlsnchs/telescope-lsp-handlers.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
+      "antonk52/npm_scripts.nvim",
     },
     keys = {
       { "<space>t", ":Telescope " },
