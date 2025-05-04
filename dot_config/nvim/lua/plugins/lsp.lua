@@ -259,10 +259,11 @@ return {
       require("typescript-tools").setup {
         on_attach = on_attach,
         settings = {
+          tsserver_max_memory = 16384,
           tsserver_file_preferences = {
             includeCompletionsForModuleExports = true,
             includeCompletionsForImportStatements = true,
-            importModuleSpecifierPreference = "non-relative",
+            importModuleSpecifierPreference = "relative",
             includeInlayParameterNameHints = "all",
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
             includeInlayFunctionParameterTypeHints = true,

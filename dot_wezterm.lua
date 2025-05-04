@@ -10,6 +10,8 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+config.max_fps = 240
+
 -- This is where you actually apply your config choices
 config.font = wezterm.font("FiraCode Nerd Font")
 config.enable_tab_bar = false

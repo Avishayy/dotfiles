@@ -16,7 +16,7 @@
 
 [".local/bin/bob"]
     type = "archive-file"
-    url = "https://github.com/MordechaiHadad/bob/releases/download/v4.0.1/bob-{{ $os }}-{{ $arch }}.zip"
+    url = "https://github.com/MordechaiHadad/bob/releases/download/v4.0.3/bob-{{ $os }}-{{ $arch }}.zip"
     path = "bob-{{ $os }}-{{ $arch }}/bob"
     executable = true
     exact = true

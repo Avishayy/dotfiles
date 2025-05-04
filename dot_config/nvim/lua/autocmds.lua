@@ -19,10 +19,3 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact", "lua" },
   command = "setlocal shiftwidth=2 tabstop=2",
 })
-
-local localleader_augroup = vim.api.nvim_create_augroup("LocalLeader", {})
-vim.api.nvim_create_autocmd("FileType", {
-  group = localleader_augroup,
-  pattern = { "norg" },
-  command = 'let maplocalleader = "\\<Space>"',
-})

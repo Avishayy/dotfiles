@@ -100,6 +100,11 @@ return {
               engine = "nvim-cmp",
             },
           },
+          ["core.journal"] = {
+            config = {
+              strategy = "flat",
+            },
+          },
           -- External templates plugin (pysan3/neorg-templates)
           ["external.templates"] = {},
         },
@@ -114,7 +119,7 @@ return {
         if require("utils").file_exists(workspace_journal_file) then
           vim.api.nvim_create_autocmd("BufNewFile", {
             command = "Neorg templates fload " .. template_name,
-            pattern = { neorg_dir .. "/journal/*.norg" },
+            pattern = { "*.norg" },
           })
         end
       end

@@ -29,10 +29,6 @@ lazy.setup("plugins", {
   checker = { enabled = false },
   ui = {
     border = "rounded",
-    --    custom_keys = {
-    --      ["<localleader>l"] = false,
-    --      ["<localleader>t"] = false,
-    --    },
   },
   dev = {
     path = "~/Projects/nvim_plugins_dev",

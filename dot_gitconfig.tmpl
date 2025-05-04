@@ -27,6 +27,8 @@
         fi; \
     }; \
     f"
+    push-force-branches = "!f() { for branch in \"$@\"; do git push --force-with-lease origin \"$branch\"; done; }; f"
+
 [push]
 	default = current
 [core]

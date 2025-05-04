@@ -7,6 +7,7 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
     "onsails/lspkind.nvim",
@@ -58,6 +59,7 @@ return {
           },
         },
         { name = "neorg" },
+        { name = "nvim_lsp_signature_help" },
       },
 
       -- we use 'comleteopt=...,noselect' but we still want cmp to autoselect

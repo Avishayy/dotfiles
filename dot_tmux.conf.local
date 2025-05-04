@@ -349,7 +349,7 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # increase history size
-set -g history-limit 10000
+set -g history-limit 50000
 
 # start with mouse mode enabled
 set -g mouse on
@@ -451,8 +451,8 @@ set -g @extrakto_key "e"
 # Emulate scrolling by sending up and down keys if these commands are running in the pane
 tmux_commands_with_legacy_scroll="nano less more man git"
 
-bind-key w new-window 'nvim "+lua vim.g.auto_session_enabled = false" -c ":Neorg workspace work" -c ":Neorg journal today" -c "norm G$"'
-bind-key W new-window 'nvim "+lua vim.g.auto_session_enabled = false" -c ":Neorg workspace personal" -c "norm G$"'
+bind-key w new-window 'nvim --cmd "let g:auto_session_enabled = v:false" -c ":Neorg workspace work" -c ":Neorg journal today"'
+bind-key W new-window 'nvim --cmd "let g:auto_session_enabled = v:false" -c ":Neorg workspace personal"
 
 # -- custom variables ----------------------------------------------------------
 

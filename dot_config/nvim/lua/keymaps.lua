@@ -110,3 +110,8 @@ map("n", "<C-h>", "<cmd>lua require'utils'.winmove('h')<CR>")
 map("n", "<C-j>", "<cmd>lua require'utils'.winmove('j')<CR>")
 map("n", "<C-k>", "<cmd>lua require'utils'.winmove('k')<CR>")
 map("n", "<C-l>", "<cmd>lua require'utils'.winmove('l')<CR>")
+
+-- Exit terminal mode, useful for Aider.nvim
+map("t", "<Esc>", "<C-\\><C-n>", { silent = true, desc = "exit terminal mode" })
+map("t", "jk", "<C-\\><C-n>", { silent = true, desc = "exit terminal mode" })
+map("t", "kj", "<C-\\><C-n>", { silent = true, desc = "exit terminal mode" })
