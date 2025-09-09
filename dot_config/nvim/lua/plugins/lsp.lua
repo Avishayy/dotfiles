@@ -121,6 +121,12 @@ return {
         end,
       }
 
+      require("lspconfig").denols.setup {
+        on_attach = on_attach,
+        root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+        single_file_support = false,
+      }
+
       require("lspconfig").clangd.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -201,8 +207,10 @@ return {
     },
     config = function()
       require("mason-lspconfig").setup {
+        automatic_enable = false,
         ensure_installed = {
           "ts_ls",
+          "denols",
           "pyright",
           "lua_ls",
           "jsonls",
@@ -243,6 +251,13 @@ return {
     event = "BufReadPost",
     config = function()
       require("typescript-tools").setup {
+        single_file_support = false,
+        root_dir = function(fname)
+          if require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(fname) then
+            return nil
+          end
+          return require("lspconfig.util").root_pattern("package.json", "tsconfig.json")(fname)
+        end,
         on_attach = on_attach,
         settings = {
           tsserver_max_memory = 16384,
