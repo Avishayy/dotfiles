@@ -9,7 +9,7 @@ local function get_default_branch()
   elseif result:find("origin/master") then
     return "master"
   else
-    return nil
+    return "main"
   end
 end
 
