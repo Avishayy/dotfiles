@@ -2,11 +2,17 @@
 
 set -eufo pipefail
 
+echo "Installing pnpm"
+
 # pnpm is installed with brew in mac
 {{ if eq .chezmoi.os "linux" }}
-echo "Installing pnpm"
 
 # TODO: the setup is intrusive and modifies .zshrc....
 # no flag to --skip-zshrc yet https://github.com/pnpm/pnpm/issues/6182
-curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=8.15.9 sh -
+curl -fsSL https://get.pnpm.io/install.sh
+
+{{ else if eq .chezmoi.os "darwin"}}
+brew install pnpm
 {{ end }}
+
+echo "pnpm installed"
