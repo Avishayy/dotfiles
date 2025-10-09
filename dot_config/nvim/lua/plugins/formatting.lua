@@ -36,11 +36,12 @@ return {
           return { lsp_fallback = true }
         end,
         formatters_by_ft = {
-          javascript = { "eslint_d", "prettierd" },
-          typescript = { "eslint_d", "prettierd" },
-          javascriptreact = { "eslint_d", "prettierd" },
-          typescriptreact = { "eslint_d", "prettierd" },
-          python = { { "ruff" }, { "black", "isort" } },
+          javascript = { "biome", "prettierd", stop_after_first = true },
+          typescript = { "biome", "prettierd", stop_after_first = true },
+          javascriptreact = { "biome", "prettierd", stop_after_first = true },
+          typescriptreact = { "biome", "prettierd", stop_after_first = true },
+          json = { "biome", "prettierd", stop_after_first = true },
+          python = { "ruff", "black", "isort", stop_after_first = true },
           rust = { "rustfmt" },
           lua = { "stylua" },
           graphql = { "eslint_d" },
