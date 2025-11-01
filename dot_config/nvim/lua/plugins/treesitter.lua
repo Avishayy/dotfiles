@@ -41,6 +41,7 @@ return {
           "markdown_inline",
           "norg",
           "php",
+          "prisma",
           "python",
           "query",
           "regex",
