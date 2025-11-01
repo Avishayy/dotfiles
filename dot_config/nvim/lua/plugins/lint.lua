@@ -5,10 +5,10 @@ return {
     config = function()
       require("lint").linters_by_ft = {
         python = { "ruff" },
-        javascript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescript = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
+        javascript = { "biomejs" },
+        javascriptreact = { "biomejs" },
+        typescript = { "biomejs" },
+        typescriptreact = { "biomejs" },
         graphql = { "eslint_d" },
       }
 
