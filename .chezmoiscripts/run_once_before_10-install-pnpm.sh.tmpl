@@ -2,17 +2,26 @@
 
 set -eufo pipefail
 
-echo "Installing pnpm"
+echo "Installing pnpm via nvm + corepack"
 
-# pnpm is installed with brew in mac
-{{ if eq .chezmoi.os "linux" }}
+if [ -z "${NVM_DIR:-}" ]; then
+  export NVM_DIR="$HOME/.nvm"
+fi
 
-# TODO: the setup is intrusive and modifies .zshrc....
-# no flag to --skip-zshrc yet https://github.com/pnpm/pnpm/issues/6182
-curl -fsSL https://get.pnpm.io/install.sh
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  # shellcheck disable=SC1090
+  . "$NVM_DIR/nvm.sh"
+else
+  echo "nvm not found in $NVM_DIR" >&2
+  exit 1
+fi
 
-{{ else if eq .chezmoi.os "darwin"}}
-brew install pnpm
-{{ end }}
+echo "Installing latest Node.js LTS with nvm"
+nvm install --lts
+nvm use --lts
 
-echo "pnpm installed"
+echo "Enabling corepack and activating pnpm"
+corepack enable
+corepack prepare pnpm@latest --activate
+
+echo "pnpm installed via corepack"
