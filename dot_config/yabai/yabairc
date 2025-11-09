@@ -16,3 +16,15 @@ yabai -m config window_gap 12
 
 # when window is dropped in center of another window, swap them (on edges it will split it)
 yabai -m mouse_drop_action swap
+
+# performance: disable animations for faster window focus
+yabai -m config window_animation_duration 0.0
+
+# focus and mouse behavior
+yabai -m config focus_follows_mouse autoraise
+yabai -m config mouse_follows_focus off
+
+# window opacity for better visual feedback
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9

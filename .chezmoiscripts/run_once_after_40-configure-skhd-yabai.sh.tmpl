@@ -1,0 +1,86 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+echo "Configuring skhd and yabai..."
+
+# Check if skhd and yabai are installed
+if ! command -v skhd &> /dev/null || ! command -v yabai &> /dev/null; then
+    echo "Error: skhd and/or yabai not found. Please install them with Homebrew first:"
+    echo "  brew install koekeishiya/formulae/skhd"
+    echo "  brew install koekeishiya/formulae/yabai"
+    exit 1
+fi
+
+echo ""
+echo "======================================================================"
+echo "IMPORTANT: System Integrity Protection (SIP) Configuration"
+echo "======================================================================"
+echo ""
+echo "For yabai to work with full functionality, you need to disable SIP."
+echo "Please follow the instructions at:"
+echo "  https://github.com/koekeishiya/yabai/wiki"
+echo ""
+echo "Specifically, see the 'Disabling System Integrity Protection' section."
+echo ""
+echo "After disabling SIP, you may need to load the scripting addition:"
+echo "  sudo yabai --load-sa"
+echo "======================================================================"
+echo ""
+
+echo "======================================================================"
+echo "IMPORTANT: Accessibility Permissions Required"
+echo "======================================================================"
+echo ""
+echo "skhd and yabai require Accessibility permissions to function."
+echo ""
+echo "When you start the services, macOS will prompt you to grant"
+echo "Accessibility access. Please:"
+echo ""
+echo "  1. Go to System Preferences > Privacy & Security > Accessibility"
+echo "  2. Grant access to skhd and yabai"
+echo "  3. After granting permissions, restart the services:"
+echo "     skhd --restart-service"
+echo "     yabai --restart-service"
+echo ""
+echo "Press ENTER to continue and start the services..."
+read -r
+
+# Start and enable skhd service
+echo "Starting skhd service..."
+if skhd --start-service; then
+    echo "✓ skhd service started"
+else
+    echo "⚠ skhd service may need accessibility permissions"
+fi
+
+# Start and enable yabai service
+echo "Starting yabai service..."
+if yabai --start-service; then
+    echo "✓ yabai service started"
+else
+    echo "⚠ yabai service may need accessibility permissions"
+fi
+
+echo ""
+echo "======================================================================"
+echo "Post-Installation Steps"
+echo "======================================================================"
+echo ""
+echo "1. Grant Accessibility permissions if prompted (see above)"
+echo "2. Restart services after granting permissions:"
+echo "   skhd --restart-service"
+echo "   yabai --restart-service"
+echo ""
+echo "3. Check service status:"
+echo "   brew services list | grep -E '(skhd|yabai)'"
+echo ""
+echo "4. Configuration files location:"
+echo "   ~/.config/skhd/skhdrc"
+echo "   ~/.config/yabai/yabairc"
+echo ""
+echo "5. For SIP configuration, see:"
+echo "   https://github.com/koekeishiya/yabai/wiki"
+echo "======================================================================"
+{{ end -}}

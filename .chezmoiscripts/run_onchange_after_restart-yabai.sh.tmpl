@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+# This script runs whenever yabairc changes
+# .yabairc.tmpl hash: {{ include "dot_config/yabai/yabairc" | sha256sum }}
+
+if command -v yabai &> /dev/null; then
+    echo "Restarting yabai service due to configuration change..."
+    yabai --restart-service
+    echo "✓ yabai restarted"
+else
+    echo "⚠ yabai not found, skipping restart"
+fi
+{{ end -}}

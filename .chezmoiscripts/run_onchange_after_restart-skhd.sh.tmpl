@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+# This script runs whenever skhdrc changes
+# .skhdrc.tmpl hash: {{ include "dot_config/skhd/skhdrc" | sha256sum }}
+
+if command -v skhd &> /dev/null; then
+    echo "Restarting skhd service due to configuration change..."
+    skhd --restart-service
+    echo "✓ skhd restarted"
+else
+    echo "⚠ skhd not found, skipping restart"
+fi
+{{ end -}}
