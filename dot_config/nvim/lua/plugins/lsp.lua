@@ -112,8 +112,8 @@ return {
       })
       vim.lsp.enable("jsonls")
 
-      -- Pyright with virtual environment detection
-      vim.lsp.config("pyright", {
+      -- basedpyright with virtual environment detection
+      vim.lsp.config("basedpyright", {
         before_init = function(_, config)
           local Path = require("plenary.path")
 
@@ -130,7 +130,7 @@ return {
           end
         end,
       })
-      vim.lsp.enable("pyright")
+      vim.lsp.enable("basedpyright")
 
       -- Deno Language Server (only start if deno.json/deno.jsonc exists)
       vim.lsp.config("denols", {
@@ -206,7 +206,7 @@ return {
           "jsonls",
           "kotlin_language_server",
           "lua_ls",
-          "pyright",
+          "basedpyright",
           "rust_analyzer",
           "tailwindcss",
           "ts_ls",
