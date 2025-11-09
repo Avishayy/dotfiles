@@ -117,6 +117,10 @@ return {
         before_init = function(_, config)
           local Path = require("plenary.path")
 
+          -- Ensure settings table exists
+          config.settings = config.settings or {}
+          config.settings.python = config.settings.python or {}
+
           -- Check if CONDA_PREFIX exists and use it
           if os.getenv("CONDA_PREFIX") then
             config.settings.python.pythonPath = os.getenv("CONDA_PREFIX") .. "/bin/python"
