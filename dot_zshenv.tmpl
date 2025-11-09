@@ -1,30 +1,22 @@
+# .zshenv - Loaded for ALL zsh invocations (interactive and non-interactive)
+# Keep this minimal and fast! Only environment variables needed everywhere.
+
 # Deduplicate the PATH variable, useful when nesting shells
 typeset -U path
-path+=($HOME/.local/bin)
 
+# Essential PATH additions
+path+=($HOME/.local/bin)
 path+=($HOME/scripts)
 
-if [[ -r "$HOME/.cargo/env" ]]; then
-  . "$HOME/.cargo/env"
-fi
+# Environment variables (not initialization!)
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && path+=($PYENV_ROOT/bin)
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 
 export PNPM_HOME=$HOME/.local/share/pnpm
 path+=($PNPM_HOME)
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# I use this snippet rather than the ohmyzsh nvm plugin becaue I want nvm to be available for chezmoi scripts
-# and ohmyzsh is loaded only for interactive shells, which makes the nvm plugin unavailable
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
+# Editor configuration
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
-
-{{ if eq .chezmoi.os "darwin" }}
-eval $(/opt/homebrew/bin/brew shellenv)
-{{ end }}
-
-. "$HOME/.secrets.env"
