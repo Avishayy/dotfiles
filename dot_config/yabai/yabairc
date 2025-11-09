@@ -7,6 +7,11 @@ sudo yabai --load-sa
 yabai -m signal --add event=display_added action="$HOME/.config/yabai/display-update.sh"
 yabai -m signal --add event=display_removed action="$HOME/.config/yabai/display-update.sh"
 
+# window opacity based on active display
+yabai -m signal --add event=display_changed action="$HOME/.config/yabai/window-display-opacity.sh"
+yabai -m signal --add event=space_changed action="$HOME/.config/yabai/window-display-opacity.sh"
+yabai -m signal --add event=window_focused action="$HOME/.config/yabai/window-display-opacity.sh"
+
 
 # default layour (bsp)
 yabai -m config layout bsp
@@ -38,3 +43,6 @@ yabai -m config normal_window_opacity 0.9
 
 # create and organize spaces on startup
 $HOME/.config/yabai/display-update.sh
+
+# set initial window opacity
+$HOME/.config/yabai/window-display-opacity.sh
