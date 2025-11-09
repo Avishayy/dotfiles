@@ -1,6 +1,12 @@
 # script injection, make sure we allow yabai to run it through sudoers
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
 sudo yabai --load-sa
+
+# display configuration: run display-update script on display events
+yabai -m signal --add event=display_added action="$HOME/.config/yabai/display-update.sh"
+yabai -m signal --add event=display_removed action="$HOME/.config/yabai/display-update.sh"
+
 
 # default layour (bsp)
 yabai -m config layout bsp
@@ -26,5 +32,9 @@ yabai -m config mouse_follows_focus off
 
 # window opacity for better visual feedback
 yabai -m config window_opacity on
+yabai -m config window_opacity_duration 0.0
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.9
+
+# create and organize spaces on startup
+$HOME/.config/yabai/display-update.sh
