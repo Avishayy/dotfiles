@@ -42,7 +42,7 @@ return {
           typescriptreact = { "biome", "prettierd", stop_after_first = true },
           json = { "biome", "prettierd", stop_after_first = true },
           jsonc = { "biome", "prettierd", stop_after_first = true },
-          python = { "ruff", "black", "isort", stop_after_first = true },
+          python = { "ruff" },
           rust = { "rustfmt" },
           lua = { "stylua" },
           graphql = { "eslint_d" },

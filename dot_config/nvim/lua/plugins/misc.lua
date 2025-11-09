@@ -130,7 +130,7 @@ return {
     lazy = false,
     opts = {
       ensure_installed = {
-        "black",
+        "ruff",
         "isort",
         "prettierd",
         "stylua",
