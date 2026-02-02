@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# claude-usage: Display Claude Code API usage in tmux status bar (macOS)
+# Adapted from https://gist.github.com/simoninglis/b6f909ba0aa2f67af872866e2f22dbd4
+# Reads OAuth credentials from macOS Keychain (Claude Code-credentials)
+#
+# Usage: claude-usage [5h|7d]
+#   5h  - show 5-hour rolling quota (default)
+#   7d  - show 7-day rolling quota
+
+CACHE_TTL="${CLAUDE_USAGE_CACHE_TTL:-180}"
+STYLE_ERROR="${CLAUDE_USAGE_STYLE_ERROR:-fg=white,dim}"
+
+readonly CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/claude-usage"
+readonly CACHE_FILE="${CACHE_DIR}/status"
+readonly KEYCHAIN_SERVICE="Claude Code-credentials"
+readonly API_URL="https://api.anthropic.com/api/oauth/usage"
+
+format_time_until() {
+  local reset_at="$1"
+  [[ -z "$reset_at" || "$reset_at" == "null" ]] && { echo "?"; return; }
+
+  local diff_seconds
+  diff_seconds=$(python3 -c "
+import datetime,sys
+try:
+  dt=datetime.datetime.fromisoformat('$reset_at')
+  print(int((dt-datetime.datetime.now(datetime.timezone.utc)).total_seconds()))
+except: print(0)
+" 2>/dev/null) || { echo "?"; return; }
+
+  [[ "$diff_seconds" -le 0 ]] && { echo "0m"; return; }
+
+  local h=$((diff_seconds / 3600))
+  local m=$((diff_seconds % 3600 / 60))
+
+  if [[ "$h" -ge 24 ]]; then
+    echo "$((h / 24))d"
+  elif [[ "$h" -ge 1 ]]; then
+    echo "${h}h"
+  else
+    echo "${m}m"
+  fi
+}
+
+make_bar() {
+  local pct="${1%.*}"
+  pct="${pct:-0}"
+  local width=9
+  local filled=$(( pct * width / 100 ))
+  [[ "$pct" -gt 0 && "$filled" -eq 0 ]] && filled=1
+  local empty=$(( width - filled ))
+  local bar=""
+  for ((i=0; i<filled; i++)); do bar+="▰"; done
+  for ((i=0; i<empty; i++)); do bar+="▱"; done
+  echo "$bar"
+}
+
+cache_valid() {
+  [[ -f "$1" ]] || return 1
+  local cache_mtime
+  cache_mtime=$(stat -f %m "$1" 2>/dev/null || echo 0)
+  local age=$(( $(date +%s) - cache_mtime ))
+  [[ "$age" -lt "$CACHE_TTL" ]]
+}
+
+fetch_and_cache() {
+  local token
+  token=$(security find-generic-password -s "$KEYCHAIN_SERVICE" -w 2>/dev/null \
+    | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+  [[ -n "$token" ]] || return 1
+
+  local response
+  response=$(curl -s --max-time 5 "$API_URL" \
+    --config <(printf 'header = "Authorization: Bearer %s"\n' "$token") \
+    -H "anthropic-beta: oauth-2025-04-20" \
+    -H "Content-Type: application/json" 2>/dev/null)
+  [[ -n "$response" ]] || return 1
+
+  local parsed
+  parsed=$(echo "$response" | jq -r '[
+    .five_hour.utilization // 0,
+    .seven_day.utilization // 0,
+    .five_hour.resets_at // "",
+    .seven_day.resets_at // ""
+  ] | @tsv' 2>/dev/null) || return 1
+
+  local five_hour seven_day five_hour_reset seven_day_reset
+  IFS=$'\t' read -r five_hour seven_day five_hour_reset seven_day_reset <<< "$parsed"
+  [[ -n "$five_hour" && -n "$seven_day" ]] || return 1
+
+  mkdir -p "$CACHE_DIR"
+
+  local d5h="${five_hour%.*}" d7d="${seven_day%.*}"
+  d5h="${d5h:-0}"; d7d="${d7d:-0}"
+
+  local t5h bar5h
+  t5h=$(format_time_until "$five_hour_reset")
+  bar5h=$(make_bar "$five_hour")
+
+  local output="${bar5h} ${d5h}% (${t5h})"
+
+  # Only show weekly if >= 75%
+  if [[ "$d7d" -ge 75 ]]; then
+    local t7d
+    t7d=$(format_time_until "$seven_day_reset")
+    output="${output} #[fg=colour186,bold]│ wk ${d7d}% (${t7d})"
+  fi
+
+  echo "$output" > "$CACHE_FILE"
+}
+
+fallback() {
+  echo "#[${STYLE_ERROR}]--#[default]"
+}
+
+main() {
+  if ! cache_valid "$CACHE_FILE"; then
+    fetch_and_cache || true
+  fi
+
+  if [[ -f "$CACHE_FILE" ]]; then
+    cat "$CACHE_FILE"
+  else
+    fallback
+  fi
+}
+
+main
